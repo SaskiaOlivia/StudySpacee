@@ -1,1 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Tugas | StudySpace</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="form-page">
+    <div class="form-container">
+        <a href="index.html#tasks" class="back-link">← Kembali ke Dashboard</a>
+
+        <div class="form-card">
+            <span class="eyebrow">STUDYSPACE WORKSPACE</span>
+            <h1>Tambah Tugas Baru</h1>
+            <p>Catat tugas sekolahmu agar tidak ada yang terlewat.</p>
+
+            <form id="taskForm">
+                <label for="taskName">Nama Tugas</label>
+                <input type="text" id="taskName" placeholder="Contoh: Membuat halaman website" required>
+
+                <label for="taskSubject">Mata Pelajaran</label>
+                <input type="text" id="taskSubject" placeholder="Contoh: Pemrograman Web" required>
+
+                <label for="taskDeadline">Deadline</label>
+                <input type="date" id="taskDeadline" required>
+
+                <label for="taskPriority">Prioritas</label>
+                <select id="taskPriority">
+                    <option value="Normal">Normal</option>
+                    <option value="Penting">Penting</option>
+                    <option value="Tinggi">Tinggi</option>
+                </select>
+
+                <label for="taskDescription">Deskripsi (opsional)</label>
+                <textarea id="taskDescription" rows="4" placeholder="Tulis detail tugas..."></textarea>
+
+                <button type="submit" class="primary-button full-button">Simpan Tugas</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
 
