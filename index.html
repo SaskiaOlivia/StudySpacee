@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudySpace | Student Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="assets/logo.png">
+</head>
+<body>
+
+<div class="app">
+    <aside class="sidebar" id="sidebar">
+        <div class="brand">
+            <img src="assets/logo.png" alt="Logo">
+            <span>StudySpace</span>
+        </div>
+
+        <p class="menu-label">MENU UTAMA</p>
+        <nav>
+            <a href="#dashboard" class="nav-link active" data-page="dashboard">⌂ <span>Dashboard</span></a>
+            <a href="#tasks" class="nav-link" data-page="tasks">▤ <span>Tugas Saya</span></a>
+            <a href="#schedule" class="nav-link" data-page="schedule">▦ <span>Jadwal Pelajaran</span></a>
+            <a href="#notes" class="nav-link" data-page="notes">✎ <span>Catatan</span></a>
+            <a href="#calendar" class="nav-link" data-page="calendar">▣ <span>Kalender</span></a>
+            <a href="#focus" class="nav-link" data-page="focus">◷ <span>Focus Timer</span></a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="mini-profile">
+                <div class="avatar" id="sideAvatar">S</div>
+                <div>
+                    <strong id="sideName">Siswa</strong>
+                    <small id="sideClass">Pelajar</small>
+                </div>
+            </div>
+            <button class="theme-button" id="themeButton">☾ <span>Mode Gelap</span></button>
+        </div>
+    </aside>
+
+    <main class="main">
+        <header class="topbar">
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <div>
+                <span class="date-label" id="todayDate"></span>
+                <h2 id="pageTitle">Dashboard</h2>
+            </div>
+            <button class="profile-button" id="editProfile">✎ Edit Profil</button>
+        </header>
+
+        <section class="page active" id="dashboard">
+            <div class="welcome">
+                <div>
+                    <span class="eyebrow">STUDENT WORKSPACE</span>
+                    <h1>Halo, <span id="welcomeName">Siswa</span>! 👋</h1>
+                    <p>Atur kegiatan belajar dan capai targetmu hari ini.</p>
+                </div>
+                <div class="welcome-icon">📚</div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-icon">📋</span>
+                    <p>Total Tugas</p>
+                    <h2 id="totalTasks">0</h2>
+                    <small>Semua tugas tercatat</small>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-icon">✅</span>
+                    <p>Tugas Selesai</p>
+                    <h2 id="completedTasks">0</h2>
+                    <small>Sudah kamu kerjakan</small>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-icon">⏳</span>
+                    <p>Belum Selesai</p>
+                    <h2 id="pendingTasks">0</h2>
+                    <small>Masih perlu dikerjakan</small>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-icon">📅</span>
+                    <p>Jadwal Hari Ini</p>
+                    <h2 id="todaySchedule">0</h2>
+                    <small>Mata pelajaran</small>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div>
+                            <h3>Daftar Tugas</h3>
+                            <p>Jangan lupa selesaikan tugasmu.</p>
+                        </div>
+                        <button class="text-button" data-goto="tasks">Lihat semua →</button>
+                    </div>
+                    <div id="dashboardTasks" class="task-list"></div>
+                </div>
+
+                <div class="panel progress-panel">
+                    <h3>Progress Belajar</h3>
+                    <p>Perkembangan penyelesaian tugasmu.</p>
+                    <div class="progress-circle" id="progressCircle">
+                        <div>
+                            <strong id="progressPercent">0%</strong>
+                            <small>Selesai</small>
+                        </div>
+                    </div>
+                    <p class="progress-caption" id="progressCaption">Mulai kerjakan tugas pertamamu!</p>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div>
+                            <h3>Jadwal Hari Ini</h3>
+                            <p>Pelajaran yang harus kamu ikuti.</p>
+                        </div>
+                        <button class="text-button" data-goto="schedule">Lihat →</button>
+                    </div>
+                    <div id="dashboardSchedule" class="schedule-list"></div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div>
+                            <h3>Catatan Terbaru</h3>
+                            <p>Ide dan materi belajarmu.</p>
+                        </div>
+                        <button class="text-button" data-goto="notes">Lihat →</button>
+                    </div>
+                    <div id="dashboardNotes" class="notes-preview"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="page" id="tasks">
+            <div class="section-heading">
+                <div>
+                    <h2>Daftar Tugas</h2>
+                    <p>Kelola semua tugas sekolahmu di sini.</p>
+                </div>
+                <a class="primary-button" href="form.html">＋ Tambah Tugas</a>
+            </div>
+            <div class="toolbar">
+                <input type="search" id="taskSearch" placeholder="Cari nama tugas...">
+                <select id="taskFilter">
+                    <option value="all">Semua tugas</option>
+                    <option value="pending">Belum selesai</option>
+                    <option value="completed">Selesai</option>
+                </select>
+            </div>
+            <div id="allTasks" class="task-list full-list"></div>
+        </section>
+
+        <section class="page" id="schedule">
+            <div class="section-heading">
+                <div>
+                    <h2>Jadwal Pelajaran</h2>
+                    <p>Atur jadwal pelajaran mingguanmu.</p>
+                </div>
+            </div>
+            <form id="scheduleForm" class="panel inline-form">
+                <input id="subjectName" placeholder="Nama mata pelajaran" required>
+                <select id="subjectDay" required>
+                    <option value="">Pilih hari</option>
+                    <option>Senin</option><option>Selasa</option>
+                    <option>Rabu</option><option>Kamis</option>
+                    <option>Jumat</option><option>Sabtu</option>
+                </select>
+                <input id="subjectTime" type="time" required>
+                <button class="primary-button">Tambah Jadwal</button>
+            </form>
+            <div id="allSchedule" class="schedule-grid"></div>
+        </section>
+
+        <section class="page" id="notes">
+            <div class="section-heading">
+                <div>
+                    <h2>Catatan Digital</h2>
+                    <p>Simpan materi, ide, dan hal penting lainnya.</p>
+                </div>
+            </div>
+            <form id="noteForm" class="panel note-form">
+                <input id="noteTitle" placeholder="Judul catatan..." required>
+                <textarea id="noteContent" rows="4" placeholder="Tulis catatanmu di sini..." required></textarea>
+                <button class="primary-button">＋ Simpan Catatan</button>
+            </form>
+            <div id="allNotes" class="notes-grid"></div>
+        </section>
+
+        <section class="page" id="calendar">
+            <div class="section-heading">
+                <div>
+                    <h2>Kalender Deadline</h2>
+                    <p>Lihat tenggat waktu tugas-tugasmu.</p>
+                </div>
+            </div>
+            <div class="panel calendar-panel">
+                <div class="calendar-header">
+                    <button id="prevMonth">←</button>
+                    <h3 id="calendarTitle"></h3>
+                    <button id="nextMonth">→</button>
+                </div>
+                <div class="calendar-grid" id="calendarGrid"></div>
+            </div>
+            <div class="panel deadline-panel">
+                <h3>Daftar Deadline</h3>
+                <div id="deadlineList"></div>
+            </div>
+        </section>
+
+        <section class="page" id="focus">
+            <div class="section-heading">
+                <div>
+                    <h2>Focus Timer</h2>
+                    <p>Fokus belajar dengan teknik Pomodoro.</p>
+                </div>
+            </div>
+            <div class="panel timer-panel">
+                <span class="eyebrow">TIME TO FOCUS</span>
+                <div class="timer-display" id="timerDisplay">25:00</div>
+                <p id="timerMode">Waktu fokus belajar</p>
+                <div class="timer-modes">
+                    <button class="mode-button active" data-minutes="25" data-mode="Fokus belajar">Fokus 25 menit</button>
+                    <button class="mode-button" data-minutes="5" data-mode="Istirahat singkat">Istirahat 5 menit</button>
+                    <button class="mode-button" data-minutes="15" data-mode="Istirahat panjang">Istirahat 15 menit</button>
+                </div>
+                <div class="timer-controls">
+                    <button class="primary-button" id="startTimer">Mulai</button>
+                    <button class="secondary-button" id="resetTimer">Reset</button>
+                </div>
+                <p class="session-count">Sesi fokus selesai: <strong id="sessionCount">0</strong></p>
+            </div>
+        </section>
+
+        <footer>© 2026 StudySpace · Your personal learning space 🌿</footer>
+    </main>
+</div>
+
+<div class="modal" id="profileModal">
+    <div class="modal-content">
+        <button class="modal-close" id="closeProfile">×</button>
+        <h2>Edit Profil</h2>
+        <form id="profileForm">
+            <label>Nama lengkap</label>
+            <input id="profileName" required>
+            <label>Kelas</label>
+            <input id="profileClass" required>
+            <label>Nama sekolah</label>
+            <input id="profileSchool">
+            <button class="primary-button">Simpan Profil</button>
+        </form>
+    </div>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
